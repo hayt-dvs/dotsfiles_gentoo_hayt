@@ -1,0 +1,180 @@
+-- =========================================
+-- CATPPUCCIN MOCHA
+-- Hyprland 0.56.x
+-- =========================================
+
+local hl = require("hyprland")
+
+-- ─────────────────────────────────────────
+-- General
+-- ─────────────────────────────────────────
+
+hl.config({
+    general = {
+        gaps_in = 6,
+        gaps_out = 10,
+        border_size = 2,
+
+        ["col.active_border"] = "rgb(cba6f7)",
+        ["col.inactive_border"] = "rgb(313244)",
+
+        layout = "dwindle",
+        resize_on_border = true,
+    },
+
+    decoration = {
+        rounding = 12,
+
+        shadow = {
+            enabled = true,
+            range = 12,
+            render_power = 3,
+            color = "rgba(11111baa)",
+        },
+
+        blur = {
+            enabled = true,
+            size = 5,
+            passes = 2,
+        },
+    },
+
+    dwindle = {
+        pseudotile = true,
+        preserve_split = true,
+    },
+
+    master = {
+        new_status = "master",
+    },
+
+    misc = {
+        disable_hyprland_logo = true,
+        disable_splash_rendering = true,
+    },
+
+    input = {
+        kb_layout = "be",
+        follow_mouse = 1,
+        sensitivity = 0,
+    },
+})
+
+-- ─────────────────────────────────────────
+-- Animations
+-- ─────────────────────────────────────────
+
+hl.config({
+    animations = {
+        enabled = true,
+
+        bezier = {
+            "easeOutQuint,0.23,1,0.32,1",
+            "easeInOutCubic,0.65,0,0.35,1",
+        },
+
+        animation = {
+            "windows,1,5,easeOutQuint,popin",
+            "windowsOut,1,5,easeInOutCubic,popin",
+            "border,1,5,easeOutQuint",
+            "fade,1,5,easeOutQuint",
+            "workspaces,1,5,easeInOutCubic,slide",
+        },
+    },
+})
+
+-- ─────────────────────────────────────────
+-- Environment
+-- ─────────────────────────────────────────
+
+hl.env("XCURSOR_SIZE", "24")
+
+-- ─────────────────────────────────────────
+-- Programs
+-- ─────────────────────────────────────────
+
+hl.bind("SUPER", "RETURN", function()
+    hl.exec("foot")
+end)
+
+hl.bind("SUPER", "D", function()
+    hl.exec("wofi --show drun")
+end)
+
+-- ─────────────────────────────────────────
+-- Window controls
+-- ─────────────────────────────────────────
+
+hl.bind("SUPER", "Q", function()
+    hl.dispatch("killactive")
+end)
+
+hl.bind("SUPER", "F", function()
+    hl.dispatch("fullscreen")
+end)
+
+hl.bind("SUPER", "V", function()
+    hl.dispatch("togglefloating")
+end)
+
+-- ─────────────────────────────────────────
+-- Focus
+-- ─────────────────────────────────────────
+
+hl.bind("SUPER", "LEFT", function()
+    hl.dispatch("movefocus", "l")
+end)
+
+hl.bind("SUPER", "RIGHT", function()
+    hl.dispatch("movefocus", "r")
+end)
+
+hl.bind("SUPER", "UP", function()
+    hl.dispatch("movefocus", "u")
+end)
+
+hl.bind("SUPER", "DOWN", function()
+    hl.dispatch("movefocus", "d")
+end)
+
+-- ─────────────────────────────────────────
+-- Move windows
+-- ─────────────────────────────────────────
+
+hl.bind("SUPER SHIFT", "LEFT", function()
+    hl.dispatch("movewindow", "l")
+end)
+
+hl.bind("SUPER SHIFT", "RIGHT", function()
+    hl.dispatch("movewindow", "r")
+end)
+
+hl.bind("SUPER SHIFT", "UP", function()
+    hl.dispatch("movewindow", "u")
+end)
+
+hl.bind("SUPER SHIFT", "DOWN", function()
+    hl.dispatch("movewindow", "d")
+end)
+
+-- ─────────────────────────────────────────
+-- Workspaces
+-- ─────────────────────────────────────────
+
+for i = 1, 9 do
+    hl.bind("SUPER", tostring(i), function()
+        hl.dispatch("workspace", tostring(i))
+    end)
+
+    hl.bind("SUPER SHIFT", tostring(i), function()
+        hl.dispatch("movetoworkspace", tostring(i))
+    end)
+end
+
+-- ─────────────────────────────────────────
+-- Startup
+-- ─────────────────────────────────────────
+
+hl.exec_once("waybar")
+hl.exec_once("mako")
+hl.exec_once("hyprpaper")

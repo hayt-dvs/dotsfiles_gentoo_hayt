@@ -1,0 +1,23 @@
+[general]
+bars = 16
+framerate = 60
+autosens = 1
+sensitivity = 100
+
+[input]
+method = pulse
+source = auto
+
+[output]
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+ascii_max_range = 7
+
+[color]
+gradient = 1
+gradient_count = 4
+gradient_color_1 = '#cba6f7'
+gradient_color_2 = '#f5c2e7'
+gradient_color_3 = '#89b4fa'
+gradient_color_4 = '#89dceb'

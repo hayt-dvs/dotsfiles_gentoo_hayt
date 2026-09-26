@@ -1,0 +1,24 @@
+{
+    "positionX": "right",
+    "positionY": "top",
+    "layer": "overlay",
+    "control-center-width": 380,
+    "notification-window-width": 360,
+    "notification-window-height": 120,
+    "notification-window-position": "top-right",
+    "timeout": 6,
+    "timeout-low": 3,
+    "timeout-critical": 0,
+    "fit-to-screen": true,
+    "keyboard-shortcuts": true,
+    "image-visibility": "when-available",
+    "transition-time": 200,
+    "notification-2fa-action": true,
+    "hide-on-action": true,
+    "script-fail-notify": true,
+    "widgets": [
+        "title",
+        "dnd",
+        "notifications"
+    ]
+}
